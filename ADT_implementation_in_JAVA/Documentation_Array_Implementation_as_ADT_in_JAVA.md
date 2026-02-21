@@ -257,10 +257,10 @@ Capacity = storage
 Size = storage used / total number of elements presented
 
 Insertion works on gaps.
+All valid elements must always remain continuous.
+Deletion works on elements.
 
+further more :-) 
 Understanding or perspective on this : 
 
 When we create our own MyArray class (with fields like size, capacity, and an internal array) and then define operations such as insert, delete, delete at end, delete at front, delete at given index, search element, find max/min, get element, or even sorting, and many more operations we are learning how to design an Abstract Data Type (ADT). An ADT separates what the structure does from how it is implemented. Instead of directly manipulating raw arrays everywhere in the program, we encapsulate the data and expose controlled operations. This gives us power: we can enforce rules (like not inserting when full), track size correctly, optimize operations, and extend functionality whenever needed. In essence, we are building a simplified version of something like Oracle’s ArrayList class inside the Java Collections Framework — but with full awareness of how it works internally. This knowledge is foundational because once you understand how to design an Array ADT, you can construct more advanced custom data structures like Stack (LIFO behavior), Queue (FIFO behavior), Deque, or even more complex structures. ADT thinking transforms you from someone who uses data structures into someone who can design and control them — which is the real power in Data Structures and Algorithms. I understand this as of creating both customize data type and custom data structure of our own at same time with same thing which can be known or define as ADT.
-Deletion works on elements.
-
-All valid elements must always remain continuous.
