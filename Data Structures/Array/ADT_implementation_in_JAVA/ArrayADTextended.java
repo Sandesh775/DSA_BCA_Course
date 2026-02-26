@@ -2,16 +2,21 @@ package ADT_implementation_in_JAVA;
 
 public class ArrayADTextended {
     public static void main(String[] args) {
-        MyArray2 a = new MyArray2(4);
+        MyArray2 a = new MyArray2(5);
         MyArray2 ref = a;// here ref is a reference variable for object a
-//        a.push(1);
-//        a.push(2);
-//        a.push(3);
-//        a.push(4);
         // so let's create an array of elements to be passed or stored or push
-        int [] elements = new int[4];
+        int [] elements = {1,3,4,5};
         // then passed this array to push() method !
         a.push(elements);
+        System.out.println("Size of an array used : "+ref.displayCurrentSize()+" Total capacity or length of an array : "+ref.displayLengthArray());
+        a.sortAscending();
+        a.sortDescending();
+        int largestNum = a.findLargestNum();
+        int smallestNum = a.findSmallestNum();
+        System.out.println("largest element in an array : "+largestNum+" smallest : "+smallestNum);
+        a.pop(2);
+        System.out.println("after pop 2 elements from end : ");
+        a.displayArray();
     }
 }
 class MyArray2{// just not continuing with the MyArray class cause i want to demonstrate some extra features in this one seperately
@@ -68,9 +73,13 @@ class MyArray2{// just not continuing with the MyArray class cause i want to dem
             return;
         }
         for( int i = 0; i<elements.length; i++){
-            if(i <= size-1){
+            if(i < capacity){
                 arr[size] = elements[i];
                 size++;
+            }
+            else {
+                System.out.println("Array full! Could only add " + i + " elements");
+                break;
             }
         }
     }
@@ -83,6 +92,11 @@ class MyArray2{// just not continuing with the MyArray class cause i want to dem
     }
     // method to return largest element present in the array :
     public int findLargestNum(){
+        if(size == 0){
+            return -1;// since the array is empty
+        } else if (size == 1) {
+            return arr[size];// there is only one element so whatever smallest or largest is it is !
+        }
         int largest = arr[0];
         for( int i = 1; i<size; i++){
             if( arr[i] > largest ){
@@ -93,6 +107,11 @@ class MyArray2{// just not continuing with the MyArray class cause i want to dem
     }
     // method to return smallest element present in the array :
     public int findSmallestNum(){
+        if(size == 0){
+            return -1;// since the array is empty
+        } else if (size == 1) {
+            return arr[0];// there is only one element so whatever smallest or largest is it is ! (size=1 means index 0)
+        }
         int smallest = arr[0];
         for( int i = 1; i<size; i++){
             if( arr[i] < smallest ){
@@ -101,8 +120,11 @@ class MyArray2{// just not continuing with the MyArray class cause i want to dem
         }
         return smallest;
     }
-    // method to return second largest element in the array
+    // method to return second smallest element in the array
     public int findSecondSmallestNum(){
+        if(size <= 1){
+            return -1;// since there is only one element or array is empty
+        }
         int smallest1 = -1;
         int smallest2 = -1;
         if(arr[0] < arr[1]){
@@ -123,25 +145,73 @@ class MyArray2{// just not continuing with the MyArray class cause i want to dem
         }
         return smallest2;
     }
+    // method to return second largest from an array...
     public int findSecondLargestNum(){
-        int Max1 = 1;
-        int Max2 = 2;
-        if(arr[0] < arr[1]){
-            smallest1 = arr[0];
-            smallest2 = arr[1];
+        if(size <= 1){
+            return -1;// since there is only one element or array is empty
+        }
+        int Max1 = arr[1];
+        int Max2 = arr[2];
+        if(arr[0] > arr[1]){
+            Max1 = arr[0];
+            Max2 = arr[1];
         }
         else{
-            smallest1 = arr[1];
-            smallest2 = arr[0];
+            Max1 = arr[1];
+            Max2 = arr[0];
         }
         for( int i = 2; i<size; i++){
-            if( arr[i] < smallest1){
-                smallest2 = smallest1;
-                smallest1 = arr[i];
-            } else if (arr[i] < smallest2) {
-                smallest2 = arr[i];
+            if( arr[i] > Max1){
+                Max2 = Max1;
+                Max1 = arr[i];
+            } else if (arr[i] > Max2) {
+                Max2 = arr[i];
             }
         }
-        return smallest2;
+        return Max2;
+    }
+    // here is method to directly print one after one sorted element in ascending order
+    public void sortAscending(){
+        if(size <= 1){
+            System.out.println("Invalid operation !");
+            return;
+        }
+        for( int i = 0; i< size; i++){
+            for( int j = i+1; j<size; j++){
+                if(arr[i] > arr[j]){
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println(" ");
+    }
+    // here is another method to directly print one after one sorted element in descending order
+    public void sortDescending(){
+        if(size <= 1){
+            System.out.println("Invalid operation !");
+            return;
+        }
+        for( int i = 0; i< size; i++){
+            for( int j = i+1; j<size; j++){
+                if(arr[i] < arr[j]){
+                    int temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println(" ");
+    }
+    public int displayCurrentSize(){
+        //System.out.println("Capacity used or current size of array : "+size);// we can also return value from method !\
+        return getSize();
+    }
+    public int displayLengthArray(){
+        //System.out.println("Length / Capacity of Array is : "+capacity);
+        return getCapacity();
     }
 }
