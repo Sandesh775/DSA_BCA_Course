@@ -11,6 +11,7 @@ public class Implementing_Queue {
         queue.show();
     }
 }
+// basically simple queue is a linear queue
 // here i understand that while dequeue we can shift elements at left,
 // and doing so allows us to have front pointer constant arr[0] so no need of pointer
 // and another thing i haven't used size as used size but as capacity, but we can do with that too
