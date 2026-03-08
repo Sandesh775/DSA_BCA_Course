@@ -2,7 +2,16 @@ package Queue_Implementation_Using_Array;
 
 public class Circular_Queue {
     public static void main(String[] args) {
-
+        CircularQueue c = new CircularQueue(5);
+        c.enqueue(1);
+        c.enqueue(2);
+        c.enqueue(3);
+        c.enqueue(4);
+        c.enqueue(5);
+        c.display();
+        System.out.println(c.dequeue());
+        System.out.println(c.dequeue());
+        c.display();
     }
 }
 class CircularQueue{
@@ -22,7 +31,7 @@ class CircularQueue{
             return  false;
         }
         a[rear] = value;
-        rear = rear % a.length;
+        rear = (rear+1) % a.length;
         currSize++;
         return true;
     }
@@ -31,18 +40,23 @@ class CircularQueue{
             return -1;
         }
         int removed = a[front];
-        front = front % a.length;
+        front = (front+1) % a.length;
         currSize--;
         return removed;
     }
     public void display(){
-        for( int i = 0; i != rear;i++){
-            if( i > a.length){
-                i = i%a.length;
-            }
-            System.out.print(a[i]+" ");
+        if(isempty()){
+            System.out.println("Invalid operation");
+            return;
         }
-        System.out.println(" ");
+        int i = front;
+        do{
+            System.out.print(a[i]+" -> ");
+//            i++;
+//            i %= a.length;
+              i = (i + 1) % a.length;
+        }while (i != rear);
+        System.out.println("END");
     }
     public boolean isempty(){
         if(currSize == 0){
