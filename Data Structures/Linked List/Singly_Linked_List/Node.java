@@ -1,3 +1,5 @@
+package Singly_Linked_List;
+
 public class Node {
     int data;
     Node next_node_address;// by default this value is null
