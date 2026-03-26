@@ -1,7 +1,9 @@
+// Generally and mostly Bubble sorting is efficient for Array
 import java.util.LinkedList;
+
 public class Bubble_Sort {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        LinkedList<Integer> list = new LinkedList<>();
         list.add(5);
         list.add(0);
         list.add(3);
@@ -9,26 +11,66 @@ public class Bubble_Sort {
         list.add(2);
         list.add(4);
         list.add(6);
+
         System.out.println("Before sorting : ");
         System.out.println(list);
-        Bubble(list);
+
+        bubbleSort(list);
+
         System.out.println("After sorting : ");
         System.out.println(list);
     }
-    static void Bubble(LinkedList linkedlist){
-        int size = linkedlist.size();
+
+    static void bubbleSort(LinkedList<Integer> list) {
+        int size = list.size();
         boolean swapped = true;
-        for(int i = 0; i<size-1 && swapped; i++){
+
+        for (int i = 0; i < size - 1 && swapped; i++) {
             swapped = false;
-            for( int j = 0; j<size-1-i; j++){
-                int k = (int) linkedlist.get(j);
-                int l = (int) linkedlist.get(j+1);
-                if(k > l){
+            for (int j = 0; j < size - 1 - i; j++) {
+                int current = list.get(j);
+                int next = list.get(j + 1);
+
+                if (current > next) {
                     swapped = true;
-                    linkedlist.set(j,l);
-                    linkedlist.set(j+1,k);
+                    list.set(j, next);
+                    list.set(j + 1, current);
                 }
             }
         }
     }
 }
+//import java.util.LinkedList;
+//public class Bubble_Sort {
+//    public static void main(String[] args) {
+//        LinkedList list = new LinkedList();
+//        list.add(5);
+//        list.add(0);
+//        list.add(3);
+//        list.add(1);
+//        list.add(2);
+//        list.add(4);
+//        list.add(6);
+//        System.out.println("Before sorting : ");
+//        System.out.println(list);
+//        Bubble(list);
+//        System.out.println("After sorting : ");
+//        System.out.println(list);
+//    }
+//    static void Bubble(LinkedList linkedlist){
+//        int size = linkedlist.size();
+//        boolean swapped = true;
+//        for(int i = 0; i<size-1 && swapped; i++){
+//            swapped = false;
+//            for( int j = 0; j<size-1-i; j++){
+//                int k = (int) linkedlist.get(j);
+//                int l = (int) linkedlist.get(j+1);
+//                if(k > l){
+//                    swapped = true;
+//                    linkedlist.set(j,l);
+//                    linkedlist.set(j+1,k);
+//                }
+//            }
+//        }
+//    }
+//}
